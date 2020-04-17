@@ -74,7 +74,7 @@ function compareWords() {
     wrong++;
     score.textContent--;
   }
-  setTimeout(reload, 2000);
+  setTimeout(reload, 2500);
 }
 
 function showNotification() {
