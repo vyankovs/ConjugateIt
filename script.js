@@ -7,8 +7,10 @@ const characters = document.querySelectorAll(".character");
 const notification = document.getElementById("notification-container");
 const finalMessage = document.getElementById("final-message");
 const nextBtn = document.getElementById("nextBtn");
-const correct = document.getElementById("correct");
-const wrong = document.getElementById("wrong");
+const score = document.getElementById("score");
+
+let correct = 0;
+let wrong = 0;
 
 const finalMessageRevealWord = document.getElementById(
   "final-message-reveal-word"
@@ -54,31 +56,29 @@ function selectWord(tense, tenseText) {
 }
 function compareWords() {
   if (input.value.toLowerCase() == window.x[window.y]) {
-    correct.innerText++;
+    correct++;
+    score.textContent++;
     finalMessage.innerText = "Correct! 😺";
     showNotification();
     if (correct.innerText % 5 == 0) {
       imgCorrect.style.display = "block";
     }
     finalMessageRevealWord.innerText = "";
-    setTimeout(reload, 1500);
   } else {
-    finalMessage.innerText = "Wrong 🙀";
-    finalMessageRevealWord.innerText = `Correct answer is: ${
+    finalMessage.innerText = "Faux 🙀";
+    finalMessageRevealWord.innerText = `La réponse correcte: ${
       window.x[window.y]
     }`;
     showNotification();
 
-    wrong.textContent++;
+    wrong++;
+    score.textContent--;
   }
+  setTimeout(reload, 2000);
 }
 
 function showNotification() {
   notification.classList.add("show");
-
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 6000);
 }
 
 characters.forEach((a) =>
