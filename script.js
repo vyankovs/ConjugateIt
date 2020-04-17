@@ -49,11 +49,11 @@ function selectWord(tense, tenseText) {
   window.x = tense[Math.floor(Math.random() * tense.length)];
   window.y = pronoms[Math.floor(Math.random() * pronoms.length)];
   word.innerText = window.x.inf;
-  pronom.innerText = window.y;
+  pronom.innerText = `${window.y}    `;
   shownTense.innerHTML = tenseText;
 }
 function compareWords() {
-  if (input.value == window.x[window.y]) {
+  if (input.value.toLowerCase() == window.x[window.y]) {
     correct.innerText++;
     finalMessage.innerText = "Correct! 😺";
     showNotification();
@@ -61,6 +61,7 @@ function compareWords() {
       imgCorrect.style.display = "block";
     }
     finalMessageRevealWord.innerText = "";
+    setTimeout(reload, 1500);
   } else {
     finalMessage.innerText = "Wrong 🙀";
     finalMessageRevealWord.innerText = `Correct answer is: ${

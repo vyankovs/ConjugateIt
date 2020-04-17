@@ -24,15 +24,16 @@ body {
   font-family: "Lato", sans-serif;
   margin: 0;
 }
-.input {
-  display: none;
+input {
+  font-size: 22px;
+  margin-left: 10px;
 }
 
 #word {
   color: rgb(132, 0, 255);
 }
 #pronom {
-  font-size: 20px;
+  font-size: 22px;
 }
 .container {
   margin-bottom: 70px;

@@ -85,6 +85,15 @@ const finirPresent = new Word(
   "finissez",
   "finissent"
 );
+const croirePresent = new Word(
+  "croire",
+  "crois",
+  "crois",
+  "croit",
+  "croyons",
+  "croyez",
+  "croient"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -95,6 +104,7 @@ const wordsPresent = [
   donnerPresent,
   passerPresent,
   finirPresent,
+  croirePresent,
 ];
 
 const allerImp = new Word(
@@ -187,6 +197,17 @@ const direImp = new Word(
   "disiez",
   "disaient"
 );
+
+const croireImp = new Word(
+  "croire",
+  "croyais",
+  "croyais",
+  "croyait",
+  "croyions",
+  "croyiez",
+  "croyaient"
+);
+
 const wordsImparfait = [
   allerImp,
   avoirImp,
@@ -198,6 +219,7 @@ const wordsImparfait = [
   passerImp,
   finirImp,
   direImp,
+  croireImp,
 ];
 
 const allerFutur = new Word(
