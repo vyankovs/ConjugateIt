@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conjugate It!</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2><span id="word"></span> in <span id="tense"></span></h2>
+      <p><span id="pronom"></span> <input type="text" id="myInput" /></p>
+      <button class="character">é</button> <button class="character">ê</button>
+      <button class="character">è</button>
+      <button class="character">î</button>
+      <br />
+
+      <button id="btn">Check</button>
+      <button id="nextBtn">New word</button>
+
+      <p>Correct: <span id="correct">0</span></p>
+      <p>Wrong: <span id="wrong">0</span></p>
+    </div>
+
+    <div class="notification-container show" id="notification-container">
+      <h2 id="final-message"></h2>
+      <h3 id="final-message-reveal-word"></h3>
+    </div>
+    <!-- 
+    <img
+      id="imgCorrect"
+      src="https://media.tenor.com/images/96abbecd19b93eed75b7a92f46f2330c/tenor.gif"
+    /> -->
+
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
