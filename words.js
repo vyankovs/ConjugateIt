@@ -1,4 +1,4 @@
-const pronoms = ["je", "tu", "il", "nous", "vous", "ils"];
+const pronoms = ["je(j')", "tu", "il", "nous", "vous", "ils"];
 
 class Word {
   constructor(inf, je, tu, il, nous, vous, ils) {
@@ -94,6 +94,23 @@ const croirePresent = new Word(
   "croyez",
   "croient"
 );
+const direPresent = new Word(
+  "dire",
+  "dis",
+  "dis",
+  "dit",
+  "disons",
+  "dites",
+  "disent"
+);
+const mettrePresent = new Word(
+  "mettre",
+  "mets",
+  "mets",
+  "mettons",
+  "mettez",
+  "mettent"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -105,6 +122,8 @@ const wordsPresent = [
   passerPresent,
   finirPresent,
   croirePresent,
+  direPresent,
+  mettrePresent,
 ];
 
 const allerImp = new Word(
@@ -207,6 +226,15 @@ const croireImp = new Word(
   "croyiez",
   "croyaient"
 );
+const mettreImp = new Word(
+  "mettre",
+  "mettais",
+  "mettais",
+  "mettait",
+  "mettions",
+  "mettiez",
+  "mettaient"
+);
 
 const wordsImparfait = [
   allerImp,
@@ -220,6 +248,7 @@ const wordsImparfait = [
   finirImp,
   direImp,
   croireImp,
+  mettreImp,
 ];
 
 const allerFutur = new Word(
@@ -303,6 +332,26 @@ const finirFutur = new Word(
   "finirez",
   "finiront"
 );
+const direFutur = new Word(
+  "dire",
+  "dirai",
+  "diras",
+  "dira",
+  "dirons",
+  "direz",
+  "diront"
+);
+
+const mettreFutur = new Word(
+  "mettre",
+  "mettrai",
+  "mettras",
+  "mettra",
+  "mettrons",
+  "mettrez",
+  "mettront"
+);
+
 const wordsFutur = [
   allerFutur,
   avoirFutur,
@@ -313,6 +362,8 @@ const wordsFutur = [
   donnerFutur,
   passerFutur,
   finirFutur,
+  direFutur,
+  mettreFutur,
 ];
 
 const allerCond = new Word(
@@ -396,6 +447,24 @@ const finirCond = new Word(
   "finiriez",
   "finiraient"
 );
+const direCond = new Word(
+  "dire",
+  "dirais",
+  "dirais",
+  "dirait",
+  "dirions",
+  "diriez",
+  "diraient"
+);
+const mettreCond = new Word(
+  "mettre",
+  "mettrais",
+  "mettrais",
+  "mettrait",
+  "mettrions",
+  "mettriez",
+  "mettraient"
+);
 const wordsCond = [
   allerCond,
   avoirCond,
@@ -406,6 +475,8 @@ const wordsCond = [
   donnerCond,
   passerCond,
   finirCond,
+  direCond,
+  mettreCond,
 ];
 
 const allerPasse = new Word(
@@ -489,6 +560,24 @@ const finirPasse = new Word(
   "avez fini",
   "ont fini"
 );
+const direPasse = new Word(
+  "dire",
+  "ai dit",
+  "as dit",
+  "a dit",
+  "avons dit",
+  "avez dit",
+  "ont dit"
+);
+const mettrePasse = new Word(
+  "mettre",
+  "ai mis",
+  "as mis",
+  "a mis",
+  "avons mis",
+  "avez mis",
+  "ont mis"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -499,4 +588,6 @@ const wordsPasse = [
   donnerPasse,
   passerPasse,
   finirPasse,
+  direPasse,
+  mettrePasse,
 ];

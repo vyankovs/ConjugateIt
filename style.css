@@ -48,8 +48,9 @@ button {
   width: auto;
   font-size: 16px;
   height: auto;
-  margin: 7px;
+  margin: 4px;
   margin-top: 15px;
+  margin-left: 0;
 
   padding: 10px 15px;
   letter-spacing: 1px;
@@ -80,9 +81,16 @@ h2 {
 }
 
 #imgCorrect {
-  position: absolute;
   height: 180px;
-  top: 100px;
-  left: 500px;
-  display: none;
+}
+
+#tense {
+  color: green;
+}
+
+#results {
+  color: green;
+}
+#bravo {
+  color: #ca1168;
 }

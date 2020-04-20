@@ -1,4 +1,5 @@
 const word = document.getElementById("word");
+const body = document.querySelector("body");
 const input = document.getElementById("myInput");
 const btn = document.getElementById("btn");
 const pronom = document.getElementById("pronom");
@@ -8,6 +9,7 @@ const notification = document.getElementById("notification-container");
 const finalMessage = document.getElementById("final-message");
 const nextBtn = document.getElementById("nextBtn");
 const score = document.getElementById("score");
+const endBtn = document.getElementById("endBtn");
 
 let correct = 0;
 let wrong = 0;
@@ -28,6 +30,7 @@ reload();
 function reload() {
   input.value = "";
   notification.classList.remove("show");
+  input.focus();
 
   switch (tenses[Math.floor(Math.random() * tenses.length)]) {
     case "present":
@@ -81,9 +84,20 @@ function showNotification() {
   notification.classList.add("show");
 }
 
+function endTraining() {
+  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3>réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>`;
+  if (correct > wrong) {
+    body.innerHTML += `<h3 id="bravo">BRAVO!</h3><img
+    id="imgCorrect"
+    src="https://media.tenor.com/images/96abbecd19b93eed75b7a92f46f2330c/tenor.gif"
+  />`;
+  }
+}
+
 characters.forEach((a) =>
   a.addEventListener("click", (e) => {
     input.value += e.target.textContent;
+    input.focus();
   })
 );
 
@@ -96,3 +110,5 @@ window.addEventListener("keypress", (e) => {
     compareWords();
   }
 });
+
+endBtn.addEventListener("click", endTraining);
