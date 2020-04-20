@@ -98,7 +98,11 @@ function endTraining() {
   />`;
   }
   const playAgainBtn = document.getElementById("playAgain");
-  playAgainBtn.addEventListener("click", reload);
+  playAgainBtn.addEventListener("click", reloadPage);
+}
+
+function reloadPage() {
+  window.location.href = window.location.href;
 }
 
 //Event Listeners
