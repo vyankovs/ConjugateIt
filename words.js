@@ -1,4 +1,4 @@
-const pronoms = ["je(j')", "tu", "il", "nous", "vous", "ils"];
+const pronoms = ["je", "tu", "il", "nous", "vous", "ils"];
 
 class Word {
   constructor(inf, je, tu, il, nous, vous, ils) {

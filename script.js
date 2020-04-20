@@ -27,6 +27,7 @@ const tenses = [
 
 reload();
 
+// parameters to default, random select of tense and calling selectWord with the tense
 function reload() {
   input.value = "";
   notification.classList.remove("show");
@@ -50,49 +51,57 @@ function reload() {
   }
 }
 
+//random select of verb and pronom and put it in html
 function selectWord(tense, tenseText) {
-  window.x = tense[Math.floor(Math.random() * tense.length)];
-  window.y = pronoms[Math.floor(Math.random() * pronoms.length)];
-  word.innerText = window.x.inf;
-  pronom.innerText = `${window.y}    `;
+  window.selectedVerb = tense[Math.floor(Math.random() * tense.length)];
+  window.selectedPronom = pronoms[Math.floor(Math.random() * pronoms.length)];
+  word.innerText = window.selectedVerb.inf;
+  pronom.innerText = `${window.selectedPronom}    `;
   shownTense.innerHTML = tenseText;
 }
+
+//check if input and selected word match
 function compareWords() {
-  if (input.value.toLowerCase() == window.x[window.y]) {
+  if (input.value.toLowerCase() == window.selectedVerb[window.selectedPronom]) {
     correct++;
     score.textContent++;
+    finalMessageRevealWord.innerText = "";
     finalMessage.innerText = "Correct! 😺";
     showNotification();
-    if (correct.innerText % 5 == 0) {
-      imgCorrect.style.display = "block";
-    }
-    finalMessageRevealWord.innerText = "";
   } else {
     finalMessage.innerText = "Faux 🙀";
     finalMessageRevealWord.innerText = `La réponse correcte: ${
-      window.x[window.y]
+      window.selectedVerb[window.selectedPronom]
     }`;
     showNotification();
 
     wrong++;
     score.textContent--;
   }
-  setTimeout(reload, 2500);
+  setTimeout(() => {
+    if (notification.classList.contains("show")) reload();
+  }, 2500);
 }
 
+//show message if answer is correct or wrong
 function showNotification() {
   notification.classList.add("show");
 }
 
+//show results in body
 function endTraining() {
-  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3>réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>`;
+  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3>réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>  <button id="playAgain">Réessayer</button>`;
   if (correct > wrong) {
     body.innerHTML += `<h3 id="bravo">BRAVO!</h3><img
     id="imgCorrect"
     src="https://media.tenor.com/images/96abbecd19b93eed75b7a92f46f2330c/tenor.gif"
   />`;
   }
+  const playAgainBtn = document.getElementById("playAgain");
+  playAgainBtn.addEventListener("click", reload);
 }
+
+//Event Listeners
 
 characters.forEach((a) =>
   a.addEventListener("click", (e) => {
@@ -107,7 +116,13 @@ nextBtn.addEventListener("click", () => {
 btn.addEventListener("click", compareWords);
 window.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    compareWords();
+    if (notification.classList.contains("show")) {
+      reload();
+    } else if (input.value == null || input.value == "") {
+      input.focus();
+    } else {
+      compareWords();
+    }
   }
 });
 
