@@ -31,7 +31,7 @@ reload();
 function reload() {
   input.value = "";
   notification.classList.remove("show");
-  focusOnInput();
+  input.focus();
 
   switch (tenses[Math.floor(Math.random() * tenses.length)]) {
     case "present":
@@ -111,7 +111,7 @@ function reloadPage() {
 characters.forEach((a) =>
   a.addEventListener("click", (e) => {
     input.value += e.target.textContent;
-    focusOnInput();
+    input.focus();
   })
 );
 
@@ -135,27 +135,27 @@ endBtn.addEventListener("click", endTraining);
 
 //creating fake input to get focus and open keyboard on mobile
 
-function focusOnInput() {
-  // create invisible dummy input to receive the focus first
-  const fakeInput = document.createElement("input");
-  fakeInput.setAttribute("type", "text");
-  fakeInput.style.position = "absolute";
-  fakeInput.style.opacity = 0;
-  fakeInput.style.height = 0;
-  fakeInput.style.fontSize = "16px"; // disable auto zoom
+// function focusOnInput() {
+//   // create invisible dummy input to receive the focus first
+//   const fakeInput = document.createElement("input");
+//   fakeInput.setAttribute("type", "text");
+//   fakeInput.style.position = "absolute";
+//   fakeInput.style.opacity = 0;
+//   fakeInput.style.height = 0;
+//   fakeInput.style.fontSize = "16px"; // disable auto zoom
 
-  // you may need to append to another element depending on the browser's auto
-  // zoom/scroll behavior
-  document.body.prepend(fakeInput);
+//   // you may need to append to another element depending on the browser's auto
+//   // zoom/scroll behavior
+//   document.body.prepend(fakeInput);
 
-  // focus so that subsequent async focus will work
-  fakeInput.focus();
+//   // focus so that subsequent async focus will work
+//   fakeInput.focus();
 
-  setTimeout(() => {
-    // now we can focus on the target input
-    input.focus();
+//   setTimeout(() => {
+//     // now we can focus on the target input
+//     input.focus();
 
-    // cleanup
-    fakeInput.remove();
-  }, 1000);
-}
+//     // cleanup
+//     fakeInput.remove();
+//   }, 500);
+//}

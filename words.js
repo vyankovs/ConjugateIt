@@ -111,6 +111,15 @@ const mettrePresent = new Word(
   "mettez",
   "mettent"
 );
+const recevoirPresent = new Word(
+  "recevoir",
+  "reçois",
+  "reçois",
+  "reçoit",
+  "recevons",
+  "recevez",
+  "reçoivent"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -124,6 +133,7 @@ const wordsPresent = [
   croirePresent,
   direPresent,
   mettrePresent,
+  recevoirPresent,
 ];
 
 const allerImp = new Word(
@@ -578,6 +588,15 @@ const mettrePasse = new Word(
   "avez mis",
   "ont mis"
 );
+const recevoirPasse = new Word(
+  "recevoir",
+  "ai reçu",
+  "as reçu",
+  "a reçu",
+  "avons reçu",
+  "avez reçu",
+  "ont reçu"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -590,4 +609,5 @@ const wordsPasse = [
   finirPasse,
   direPasse,
   mettrePasse,
+  recevoirPasse,
 ];
