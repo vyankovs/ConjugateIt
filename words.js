@@ -107,6 +107,7 @@ const mettrePresent = new Word(
   "mettre",
   "mets",
   "mets",
+  "met",
   "mettons",
   "mettez",
   "mettent"
@@ -119,6 +120,15 @@ const recevoirPresent = new Word(
   "recevons",
   "recevez",
   "reçoivent"
+);
+const prendrePresent = new Word(
+  "prendre",
+  "prends",
+  "prends",
+  "prend",
+  "prenons",
+  "prenez",
+  "prennent"
 );
 const wordsPresent = [
   allerPresent,
@@ -134,6 +144,7 @@ const wordsPresent = [
   direPresent,
   mettrePresent,
   recevoirPresent,
+  prendrePresent,
 ];
 
 const allerImp = new Word(
@@ -245,6 +256,15 @@ const mettreImp = new Word(
   "mettiez",
   "mettaient"
 );
+const prendreImp = new Word(
+  "prendre",
+  "prenais",
+  "prenais",
+  "prenait",
+  "prenions",
+  "preniez",
+  "prenaient"
+);
 
 const wordsImparfait = [
   allerImp,
@@ -259,6 +279,7 @@ const wordsImparfait = [
   direImp,
   croireImp,
   mettreImp,
+  prendreImp,
 ];
 
 const allerFutur = new Word(
@@ -361,6 +382,15 @@ const mettreFutur = new Word(
   "mettrez",
   "mettront"
 );
+const prendreFutur = new Word(
+  "prendre",
+  "prendrai",
+  "prendras",
+  "prendra",
+  "prendrons",
+  "prendrez",
+  "prendront"
+);
 
 const wordsFutur = [
   allerFutur,
@@ -374,6 +404,7 @@ const wordsFutur = [
   finirFutur,
   direFutur,
   mettreFutur,
+  prendreFutur,
 ];
 
 const allerCond = new Word(
@@ -475,6 +506,15 @@ const mettreCond = new Word(
   "mettriez",
   "mettraient"
 );
+const prendreCond = new Word(
+  "prendre",
+  "prendrais",
+  "prendrais",
+  "prendrait",
+  "prendrions",
+  "prendriez",
+  "prendraient"
+);
 const wordsCond = [
   allerCond,
   avoirCond,
@@ -487,6 +527,7 @@ const wordsCond = [
   finirCond,
   direCond,
   mettreCond,
+  prendreCond,
 ];
 
 const allerPasse = new Word(
@@ -597,6 +638,15 @@ const recevoirPasse = new Word(
   "avez reçu",
   "ont reçu"
 );
+const prendrePasse = new Word(
+  "prendre",
+  "ai pris",
+  "as pris",
+  "a pris",
+  "avons pris",
+  "avez pris",
+  "ont pris"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -610,4 +660,5 @@ const wordsPasse = [
   direPasse,
   mettrePasse,
   recevoirPasse,
+  prendrePasse,
 ];
