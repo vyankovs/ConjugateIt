@@ -94,3 +94,11 @@ h2 {
 #bravo {
   color: #ca1168;
 }
+
+h4 {
+  margin-bottom: 0;
+  margin-top: 10px;
+  font-size: 18px;
+  font-style: italic;
+  color: #f87800;
+}

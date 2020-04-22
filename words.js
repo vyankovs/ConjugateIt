@@ -130,6 +130,15 @@ const prendrePresent = new Word(
   "prenez",
   "prennent"
 );
+const fairePresent = new Word(
+  "faire",
+  "fais",
+  "fais",
+  "fait",
+  "faisons",
+  "faites",
+  "font"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -145,6 +154,7 @@ const wordsPresent = [
   mettrePresent,
   recevoirPresent,
   prendrePresent,
+  fairePresent,
 ];
 
 const allerImp = new Word(
@@ -265,6 +275,15 @@ const prendreImp = new Word(
   "preniez",
   "prenaient"
 );
+const faireImp = new Word(
+  "faire",
+  "faisais",
+  "faisais",
+  "faisait",
+  "faisions",
+  "faisiez",
+  "faisaient"
+);
 
 const wordsImparfait = [
   allerImp,
@@ -280,6 +299,7 @@ const wordsImparfait = [
   croireImp,
   mettreImp,
   prendreImp,
+  faireImp,
 ];
 
 const allerFutur = new Word(
@@ -391,6 +411,15 @@ const prendreFutur = new Word(
   "prendrez",
   "prendront"
 );
+const faireFutur = new Word(
+  "faire",
+  "ferai",
+  "feras",
+  "fera",
+  "ferons",
+  "ferez",
+  "feront"
+);
 
 const wordsFutur = [
   allerFutur,
@@ -405,6 +434,7 @@ const wordsFutur = [
   direFutur,
   mettreFutur,
   prendreFutur,
+  faireFutur,
 ];
 
 const allerCond = new Word(
@@ -515,6 +545,15 @@ const prendreCond = new Word(
   "prendriez",
   "prendraient"
 );
+const faireCond = new Word(
+  "faire",
+  "ferais",
+  "ferais",
+  "ferait",
+  "ferions",
+  "feriez",
+  "feraient"
+);
 const wordsCond = [
   allerCond,
   avoirCond,
@@ -528,6 +567,7 @@ const wordsCond = [
   direCond,
   mettreCond,
   prendreCond,
+  faireCond,
 ];
 
 const allerPasse = new Word(
@@ -647,6 +687,15 @@ const prendrePasse = new Word(
   "avez pris",
   "ont pris"
 );
+const fairePasse = new Word(
+  "faire",
+  "ai fait",
+  "as fait",
+  "a fait",
+  "avons fait",
+  "avez fait",
+  "ont fait"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -661,4 +710,5 @@ const wordsPasse = [
   mettrePasse,
   recevoirPasse,
   prendrePasse,
+  fairePasse,
 ];

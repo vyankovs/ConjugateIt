@@ -13,6 +13,7 @@ const endBtn = document.getElementById("endBtn");
 
 let correct = 0;
 let wrong = 0;
+let wrongWords = new Set();
 
 const finalMessageRevealWord = document.getElementById(
   "final-message-reveal-word"
@@ -62,7 +63,8 @@ function selectWord(tense, tenseText) {
 
 //check if input and selected word match
 function compareWords() {
-  if (input.value.toLowerCase() == window.selectedVerb[window.selectedPronom]) {
+  let currentWord = window.selectedVerb[window.selectedPronom];
+  if (input.value.toLowerCase() == currentWord) {
     correct++;
     score.textContent++;
     finalMessageRevealWord.innerText = "";
@@ -70,14 +72,14 @@ function compareWords() {
     showNotification();
   } else {
     finalMessage.innerText = "Faux 🙀";
-    finalMessageRevealWord.innerText = `La réponse correcte: ${
-      window.selectedVerb[window.selectedPronom]
-    }`;
+    finalMessageRevealWord.innerText = `La réponse correcte: ${currentWord}`;
     showNotification();
 
+    wrongWords.add(window.selectedVerb.inf);
     wrong++;
     score.textContent--;
   }
+
   setTimeout(() => {
     if (notification.classList.contains("show")) reload();
   }, 2500);
@@ -90,15 +92,26 @@ function showNotification() {
 
 //show results in body
 function endTraining() {
-  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3>réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>  <button id="playAgain">Réessayer</button>`;
+  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3 id = "responseResults">réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>  <button id="playAgain" onclick = "reloadPage()">Réessayer</button>`;
   if (correct > wrong) {
     body.innerHTML += `<h3 id="bravo">BRAVO!</h3><img
     id="imgCorrect"
     src="https://media.tenor.com/images/96abbecd19b93eed75b7a92f46f2330c/tenor.gif"
   />`;
+  } else {
+    var target2 = document.getElementById("responseResults");
+    target2.insertAdjacentHTML(
+      "afterend",
+      '<h4 id = "motsARevoir">MOTS A REVOIR:</h4>'
+    );
+    var target1 = document.getElementById("motsARevoir");
+    var template = "<h4>~id~</h4>";
+    wrongWords.forEach((word) => {
+      target1.insertAdjacentHTML("afterend", template.replace(/~id~/g, word));
+    });
   }
-  const playAgainBtn = document.getElementById("playAgain");
-  playAgainBtn.addEventListener("click", reloadPage);
+
+  console.log(wrongWords);
 }
 
 //page reload
