@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Da+2|Baloo+Tammudu+2|Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -25,15 +26,24 @@ body {
   margin: 0;
 }
 input {
-  font-size: 22px;
+  font-size: 35px;
   margin-left: 10px;
+  font-family: "Caveat", cursive;
+  border: none;
+  background: #eef7db;
+  border-radius: 10px;
+}
+
+input:focus {
+  outline: none;
 }
 
 #word {
   color: rgb(132, 0, 255);
 }
 #pronom {
-  font-size: 22px;
+  font-size: 35px;
+  font-family: "Caveat", cursive;
 }
 .container {
   margin-bottom: 70px;
@@ -80,17 +90,16 @@ h2 {
   display: block;
 }
 
-#imgCorrect {
-  height: 180px;
+img {
+  height: 250px;
+  border-radius: 10px;
 }
 
-#tense {
-  color: green;
-}
-
+#tense,
 #results {
   color: green;
 }
+
 #bravo {
   color: #ca1168;
 }
@@ -100,5 +109,9 @@ h4 {
   margin-top: 10px;
   font-size: 18px;
   font-style: italic;
-  color: #f87800;
+  color: #ca1168;
+}
+
+#playAgain {
+  margin-bottom: 25px;
 }

@@ -139,6 +139,15 @@ const fairePresent = new Word(
   "faites",
   "font"
 );
+const descendrePresent = new Word(
+  "descendre",
+  "descends",
+  "descends",
+  "descend",
+  "descendons",
+  "descendez",
+  "descendent"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -155,6 +164,7 @@ const wordsPresent = [
   recevoirPresent,
   prendrePresent,
   fairePresent,
+  descendrePresent,
 ];
 
 const allerImp = new Word(
@@ -284,6 +294,15 @@ const faireImp = new Word(
   "faisiez",
   "faisaient"
 );
+descendreImp = new Word(
+  "descendre",
+  "descendais",
+  "descendais",
+  "descendait",
+  "descendions",
+  "descendiez",
+  "descendaient"
+);
 
 const wordsImparfait = [
   allerImp,
@@ -300,6 +319,7 @@ const wordsImparfait = [
   mettreImp,
   prendreImp,
   faireImp,
+  descendreImp,
 ];
 
 const allerFutur = new Word(
@@ -420,6 +440,15 @@ const faireFutur = new Word(
   "ferez",
   "feront"
 );
+const descendreFutur = new Word(
+  "descendre",
+  "descendrai",
+  "descendras",
+  "descendra",
+  "descendrons",
+  "descendrez",
+  "descendront"
+);
 
 const wordsFutur = [
   allerFutur,
@@ -435,6 +464,7 @@ const wordsFutur = [
   mettreFutur,
   prendreFutur,
   faireFutur,
+  descendreFutur,
 ];
 
 const allerCond = new Word(
@@ -554,6 +584,16 @@ const faireCond = new Word(
   "feriez",
   "feraient"
 );
+
+const descendreCond = new Word(
+  "descendre",
+  "descendrais",
+  "descendrais",
+  "descendrait",
+  "descendrions",
+  "descendriez",
+  "descendraient"
+);
 const wordsCond = [
   allerCond,
   avoirCond,
@@ -568,6 +608,7 @@ const wordsCond = [
   mettreCond,
   prendreCond,
   faireCond,
+  descendreCond,
 ];
 
 const allerPasse = new Word(
@@ -696,6 +737,16 @@ const fairePasse = new Word(
   "avez fait",
   "ont fait"
 );
+
+const descendrePasse = new Word(
+  "descendre",
+  "suis descendu",
+  "es descendu",
+  "est descendu",
+  "sommes descendus",
+  "êtes descendus",
+  "sont descendus"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -711,4 +762,5 @@ const wordsPasse = [
   recevoirPasse,
   prendrePasse,
   fairePasse,
+  descendrePasse,
 ];
