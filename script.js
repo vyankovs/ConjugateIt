@@ -121,6 +121,7 @@ function showErrors() {
   wrongWords.forEach((word) => {
     target1.insertAdjacentHTML("afterend", template.replace(/~id~/g, word));
   });
+  body.innerHTML += `<button id="playAgain" onclick = "reloadPage()">Réessayer</button>`;
 }
 
 //Event Listeners
