@@ -277,4 +277,3 @@ window.addEventListener("keypress", (e) => {
 });
 
 endBtn.addEventListener("click", endTraining);
-frequencyCount(JSON.parse(localStorage.getItem("present")));
