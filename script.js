@@ -99,7 +99,7 @@ function compareWords() {
 
     window.currentTense = shownTense.innerHTML;
 
-    if (!(currentTense in wrongWords)) {
+    if (!(window.currentTense in wrongWords)) {
       wrongWords[window.currentTense] = [];
     }
     wrongWords[window.currentTense].push(window.selectedVerb.inf);
@@ -140,7 +140,7 @@ function resultsInTable() {
   <th>Temps</th><th>Mot et nombre d'erreurs</th>
   
   </tr></table></div>`;
-
+  console.log(receivedWrongWords);
   for (let [key, value] of Object.entries(receivedWrongWords)) {
     var target1 = document.getElementById("tableResults");
     var template = `<tr >
