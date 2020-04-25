@@ -148,6 +148,24 @@ const descendrePresent = new Word(
   "descendez",
   "descendent"
 );
+const vivrePresent = new Word(
+  "vivre",
+  "vis",
+  "vis",
+  "vit",
+  "vivons",
+  "vivez",
+  "vivent"
+);
+const êtrePresent = new Word(
+  "être",
+  "suis",
+  "es",
+  "est",
+  "sommes",
+  "êtes",
+  "sont"
+);
 const wordsPresent = [
   allerPresent,
   avoirPresent,
@@ -165,6 +183,8 @@ const wordsPresent = [
   prendrePresent,
   fairePresent,
   descendrePresent,
+  vivrePresent,
+  êtrePresent,
 ];
 
 const allerImp = new Word(
@@ -303,6 +323,24 @@ descendreImp = new Word(
   "descendiez",
   "descendaient"
 );
+const vivreImp = new Word(
+  "vivre",
+  "vivais",
+  "vivais",
+  "vivait",
+  "vivions",
+  "viviez",
+  "vivaient"
+);
+const êtreImp = new Word(
+  "être",
+  "étais",
+  "étais",
+  "était",
+  "étions",
+  "étiez",
+  "étaient"
+);
 
 const wordsImparfait = [
   allerImp,
@@ -320,6 +358,8 @@ const wordsImparfait = [
   prendreImp,
   faireImp,
   descendreImp,
+  vivreImp,
+  êtreImp,
 ];
 
 const allerFutur = new Word(
@@ -449,6 +489,24 @@ const descendreFutur = new Word(
   "descendrez",
   "descendront"
 );
+const vivreFutur = new Word(
+  "vivre",
+  "vivrai",
+  "vivras",
+  "vivra",
+  "vivrons",
+  "vivrez",
+  "vivront"
+);
+const êtreFutur = new Word(
+  "être",
+  "serai",
+  "seras",
+  "sera",
+  "serons",
+  "serez",
+  "seront"
+);
 
 const wordsFutur = [
   allerFutur,
@@ -465,6 +523,8 @@ const wordsFutur = [
   prendreFutur,
   faireFutur,
   descendreFutur,
+  vivreFutur,
+  êtreFutur,
 ];
 
 const allerCond = new Word(
@@ -594,6 +654,24 @@ const descendreCond = new Word(
   "descendriez",
   "descendraient"
 );
+const vivreCond = new Word(
+  "vivre",
+  "vivrais",
+  "vivrais",
+  "vivrait",
+  "vivrions",
+  "vivriez",
+  "vivraient"
+);
+const êtreCond = new Word(
+  "être",
+  "serais",
+  "serais",
+  "serait",
+  "serions",
+  "seriez",
+  "seraient"
+);
 const wordsCond = [
   allerCond,
   avoirCond,
@@ -609,6 +687,8 @@ const wordsCond = [
   prendreCond,
   faireCond,
   descendreCond,
+  vivreCond,
+  êtreCond,
 ];
 
 const allerPasse = new Word(
@@ -747,6 +827,24 @@ const descendrePasse = new Word(
   "êtes descendus",
   "sont descendus"
 );
+const vivrePasse = new Word(
+  "vivre",
+  "ai vécu",
+  "as vécu",
+  "a vécu",
+  "avons vécu",
+  "avez vécu",
+  "ont vécu"
+);
+const êtrePasse = new Word(
+  "être",
+  "ai été",
+  "as été",
+  "a été",
+  "avons été",
+  "avez été",
+  "ont été"
+);
 const wordsPasse = [
   allerPasse,
   avoirPasse,
@@ -763,4 +861,6 @@ const wordsPasse = [
   prendrePasse,
   fairePasse,
   descendrePasse,
+  vivrePasse,
+  êtrePasse,
 ];

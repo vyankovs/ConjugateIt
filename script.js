@@ -8,13 +8,9 @@ const characters = document.querySelectorAll(".character");
 const notification = document.getElementById("notification-container");
 const finalMessage = document.getElementById("final-message");
 const nextBtn = document.getElementById("nextBtn");
+const minutesBtn = document.getElementById("3MinBtn");
 const score = document.getElementById("score");
 const endBtn = document.getElementById("endBtn");
-
-let correct = 0;
-let wrong = 0;
-let wrongWords = new Set();
-
 const finalMessageRevealWord = document.getElementById(
   "final-message-reveal-word"
 );
@@ -25,6 +21,15 @@ const tenses = [
   "conditionnel",
   "futur simple",
 ];
+let receivedWrongWords = {};
+let wrongWords = {};
+let correct = 0;
+let wrong = 0;
+
+//puts data from LS to wrongWords
+tenses.forEach((tense) => {
+  wrongWords[tense] = JSON.parse(localStorage.getItem(tense));
+});
 
 reload();
 
@@ -70,19 +75,100 @@ function compareWords() {
     finalMessageRevealWord.innerText = "";
     finalMessage.innerText = "Correct! 😺";
     showNotification();
+    if (wrongWords[window.currentTense]) {
+      while (
+        wrongWords[window.currentTense].indexOf(window.selectedVerb.inf) >= 0
+      ) {
+        wrongWords[window.currentTense].splice(
+          wrongWords[window.currentTense].indexOf(window.selectedVerb.inf),
+          1
+        );
+        localStorage.setItem(
+          window.currentTense,
+          JSON.stringify(wrongWords[window.currentTense])
+        );
+      }
+    }
   } else {
     finalMessage.innerText = "Faux 🙀";
     finalMessageRevealWord.innerText = `La réponse correcte: ${currentWord}`;
     showNotification();
 
-    wrongWords.add(window.selectedVerb.inf);
+    window.currentTense = shownTense.innerHTML;
+
+    if (!(currentTense in wrongWords)) {
+      wrongWords[window.currentTense] = [];
+    }
+    wrongWords[window.currentTense].push(window.selectedVerb.inf);
+
     wrong++;
     score.textContent--;
   }
-
+  addToLocalStorage();
   setTimeout(() => {
     if (notification.classList.contains("show")) reload();
   }, 2500);
+}
+
+// add data to LS
+function addToLocalStorage() {
+  if (window.currentTense in wrongWords) {
+    localStorage.setItem(
+      window.currentTense,
+      JSON.stringify(wrongWords[window.currentTense])
+    );
+  }
+}
+
+// get data from LS and print it in body
+function getFromLocalStorage() {
+  tenses.forEach((tense) => {
+    receivedWrongWords[tense] = JSON.parse(localStorage.getItem(tense));
+    if (receivedWrongWords[tense]) {
+      receivedWrongWords[tense] = frequencyCount(receivedWrongWords[tense]);
+    }
+  });
+
+  resultsInTable();
+}
+
+function resultsInTable() {
+  body.innerHTML = `<div class = "container1"><h3 id = "motsARevoir">Vos statistiques:</h3><br><table id = "tableResults"><tr>
+  <th>Temps</th><th>Mot et nombre d'erreurs</th>
+  
+  </tr></table></div>`;
+
+  for (let [key, value] of Object.entries(receivedWrongWords)) {
+    var target1 = document.getElementById("tableResults");
+    var template = `<tr >
+        <td>~tense~</td>
+        <td id = "~id~"></td>
+      
+          </tr>`;
+    target1.insertAdjacentHTML(
+      "beforeend",
+      template.replace(/~id~/g, key).replace(/~tense~/g, key)
+    );
+
+    console.log(key);
+    for (let [key2, value2] of Object.entries(value)) {
+      var target2 = document.getElementById(key);
+
+      var template2 = `<tr>
+      <ul><li> ~freq~ - ~mots~</li></ul>
+      </tr>`;
+      target2.insertAdjacentHTML(
+        "beforeend",
+        template2.replace(/~mots~/g, key2).replace(/~freq~/g, value2)
+      );
+    }
+  }
+  document
+    .querySelector(".container1")
+    .insertAdjacentHTML(
+      "beforeend",
+      '<button id="playAgain" onclick = "reloadPage()">Réessayer</button>'
+    );
 }
 
 //show message if answer is correct or wrong
@@ -92,7 +178,7 @@ function showNotification() {
 
 //show results in body
 function endTraining() {
-  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3 id = "responseResults">réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>   <button id="showErrorsBtn" onclick = "showErrors()">Voir mes fautes</button><button id="playAgain" onclick = "reloadPage()">Réessayer</button>`;
+  body.innerHTML = `<h2 id="results">Voici vos résultats:</h2> <h3 id = "responseResults">réponses correctes: ${correct} <br><br> réponses fausses: ${wrong}</h3>   <button id="showErrorsBtn" onclick = "getFromLocalStorage()">Voir mes fautes</button><button id="playAgain" onclick = "reloadPage()">Réessayer</button>`;
   if (correct > wrong) {
     body.innerHTML += `<h3 id="bravo">BRAVO!</h3><img
     id="imgCorrect"
@@ -105,7 +191,7 @@ function endTraining() {
   />`;
   }
 
-  console.log(wrongWords);
+  console.log(receivedWrongWords);
 }
 
 //page reload
@@ -113,25 +199,66 @@ function reloadPage() {
   window.location.href = window.location.href;
 }
 
-//shows all errors
-function showErrors() {
-  body.innerHTML = `<h4 id = "motsARevoir">MOTS A REVOIR:</h4>`;
-  var target1 = document.getElementById("motsARevoir");
-  var template = "<h4>~id~</h4>";
-  wrongWords.forEach((word) => {
-    target1.insertAdjacentHTML("afterend", template.replace(/~id~/g, word));
+// counts frequency of appearance in array
+function frequencyCount(array) {
+  var frequency = {};
+
+  array.forEach(function (value) {
+    if (frequency[value]) {
+      ++frequency[value];
+    } else {
+      frequency[value] = 1;
+    }
   });
-  body.innerHTML += `<button id="playAgain" onclick = "reloadPage()">Réessayer</button>`;
+  console.log(frequency);
+
+  return Object.keys(frequency)
+    .sort((a, b) => frequency[b] - frequency[a])
+    .reduce(
+      (_sortedObj, key) => ({
+        ..._sortedObj,
+        [key]: frequency[key],
+      }),
+      {}
+    );
+
+  // var uniques = this.filter(function (value) {
+  //   return ++frequency[value] == 1;
+  // });
+
+  // return uniques.sort(function (a, b) {
+  //   return frequency[b] - frequency[a];
+  // });
 }
 
+//countdown on a button
+function countdown(el, minutes, seconds) {
+  // set time for the particular countdown
+  var time = minutes * 60 + seconds;
+  var interval = setInterval(function () {
+    var minutes = Math.floor(time / 60);
+    if (minutes < 10) minutes = "0" + minutes;
+    var seconds = time % 60;
+    if (seconds < 10) seconds = "0" + seconds;
+    var text = minutes + ":" + seconds;
+    el.innerText = text;
+    time--;
+  }, 1000);
+}
 //Event Listeners
-
 characters.forEach((a) =>
   a.addEventListener("click", (e) => {
     input.value += e.target.textContent;
     input.focus();
   })
 );
+
+minutesBtn.addEventListener("click", () => {
+  countdown(minutesBtn, 3, 0);
+  setTimeout(() => {
+    endTraining();
+  }, 180000);
+});
 
 nextBtn.addEventListener("click", () => {
   reload();
@@ -150,14 +277,4 @@ window.addEventListener("keypress", (e) => {
 });
 
 endBtn.addEventListener("click", endTraining);
-
-// var target2 = document.getElementById("responseResults");
-// target2.insertAdjacentHTML(
-//   "afterend",
-//   '<h4 id = "motsARevoir">MOTS A REVOIR:</h4>'
-// );
-// var target1 = document.getElementById("motsARevoir");
-// var template = "<h4>~id~</h4>";
-// wrongWords.forEach((word) => {
-//   target1.insertAdjacentHTML("afterend", template.replace(/~id~/g, word));
-// });
+frequencyCount(JSON.parse(localStorage.getItem("present")));
