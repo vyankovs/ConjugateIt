@@ -99,7 +99,7 @@ function compareWords() {
 
     window.currentTense = shownTense.innerHTML;
 
-    if (!(window.currentTense in wrongWords)) {
+    if (!wrongWords.hasOwnProperty(window.currentTense)) {
       wrongWords[window.currentTense] = [];
     }
     wrongWords[window.currentTense].push(window.selectedVerb.inf);
@@ -115,7 +115,7 @@ function compareWords() {
 
 // add data to LS
 function addToLocalStorage() {
-  if (window.currentTense in wrongWords) {
+  if (wrongWords.hasOwnProperty(window.currentTense)) {
     localStorage.setItem(
       window.currentTense,
       JSON.stringify(wrongWords[window.currentTense])
@@ -126,13 +126,17 @@ function addToLocalStorage() {
 // get data from LS and print it in body
 function getFromLocalStorage() {
   tenses.forEach((tense) => {
-    receivedWrongWords[tense] = JSON.parse(localStorage.getItem(tense));
-    if (receivedWrongWords[tense]) {
-      receivedWrongWords[tense] = frequencyCount(receivedWrongWords[tense]);
+    if (localStorage.getItem(tense) != null) {
+      receivedWrongWords[tense] = JSON.parse(localStorage.getItem(tense));
+      if (receivedWrongWords[tense] != null) {
+        console.log(frequencyCount(receivedWrongWords[tense]));
+        receivedWrongWords[tense] = frequencyCount(receivedWrongWords[tense]);
+        console.log(receivedWrongWords);
+      }
     }
+    console.log(receivedWrongWords);
+    resultsInTable();
   });
-
-  resultsInTable();
 }
 
 function resultsInTable() {
@@ -214,7 +218,7 @@ function frequencyCount(array) {
     }
   });
   console.log(frequency);
-
+  // if(frequency[key] != null)
   return Object.keys(frequency)
     .sort((a, b) => frequency[b] - frequency[a])
     .reduce(
