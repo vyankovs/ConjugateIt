@@ -28,7 +28,11 @@ let wrong = 0;
 
 //puts data from LS to wrongWords
 tenses.forEach((tense) => {
-  wrongWords[tense] = JSON.parse(localStorage.getItem(tense));
+  let wrongWordsTemp;
+  wrongWordsTemp[tense] = JSON.parse(localStorage.getItem(tense));
+  if (wrongWordsTemp[tense]) {
+    wrongWords[tense] = wrongWordsTemp[tense];
+  }
 });
 
 reload();
