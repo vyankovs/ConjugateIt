@@ -26,6 +26,7 @@ let wrongWords = {};
 let correct = 0;
 let wrong = 0;
 let wrongWordsTemp = {};
+
 //puts data from LS to wrongWords
 tenses.forEach((tense) => {
   wrongWordsTemp[tense] = JSON.parse(localStorage.getItem(tense));
@@ -61,12 +62,13 @@ function reload() {
 }
 
 //random select of verb and pronom and put it in html
-function selectWord(tense, tenseText) {
-  window.selectedVerb = tense[Math.floor(Math.random() * tense.length)];
+function selectWord(arrOfWords, tenseToDisplay) {
+  window.selectedVerb =
+    arrOfWords[Math.floor(Math.random() * arrOfWords.length)];
   window.selectedPronom = pronoms[Math.floor(Math.random() * pronoms.length)];
   word.innerText = window.selectedVerb.inf;
   pronom.innerText = `${window.selectedPronom}    `;
-  shownTense.innerHTML = tenseText;
+  shownTense.innerHTML = tenseToDisplay;
 }
 
 //check if input and selected word match
@@ -82,6 +84,7 @@ function compareWords() {
       while (
         wrongWords[window.currentTense].indexOf(window.selectedVerb.inf) >= 0
       ) {
+        //delete the correct word from WrongWords
         wrongWords[window.currentTense].splice(
           wrongWords[window.currentTense].indexOf(window.selectedVerb.inf),
           1
@@ -98,7 +101,7 @@ function compareWords() {
     showNotification();
 
     window.currentTense = shownTense.innerHTML;
-
+    // check if the current tense exists in wrongWords, if not - creating an empty array for it
     if (!wrongWords.hasOwnProperty(window.currentTense)) {
       wrongWords[window.currentTense] = [];
     }
@@ -108,6 +111,7 @@ function compareWords() {
     score.textContent--;
   }
   addToLocalStorage();
+  //reload automaticly after 2,5 sec if not yet reloaded by user
   setTimeout(() => {
     if (notification.classList.contains("show")) reload();
   }, 2500);
@@ -138,7 +142,7 @@ function getFromLocalStorage() {
     resultsInTable();
   });
 }
-
+// create a final table with mistakes in all words and tenses from LocalStorage with number of mistakes in each word
 function resultsInTable() {
   body.innerHTML = `<div class = "container1"><h3 id = "motsARevoir">Vos statistiques:</h3><br><table id = "tableResults"><tr>
   <th>Temps</th><th>Mot et nombre d'erreurs</th>
@@ -157,7 +161,6 @@ function resultsInTable() {
       template.replace(/~id~/g, key).replace(/~tense~/g, key)
     );
 
-    console.log(key);
     for (let [key2, value2] of Object.entries(value)) {
       var target2 = document.getElementById(key);
 
@@ -228,14 +231,6 @@ function frequencyCount(array) {
       }),
       {}
     );
-
-  // var uniques = this.filter(function (value) {
-  //   return ++frequency[value] == 1;
-  // });
-
-  // return uniques.sort(function (a, b) {
-  //   return frequency[b] - frequency[a];
-  // });
 }
 
 //countdown on a button
@@ -252,7 +247,8 @@ function countdown(el, minutes, seconds) {
     time--;
   }, 1000);
 }
-//Event Listeners
+
+//-----Event Listeners-----
 characters.forEach((a) =>
   a.addEventListener("click", (e) => {
     input.value += e.target.textContent;
@@ -271,6 +267,7 @@ nextBtn.addEventListener("click", () => {
   reload();
 });
 btn.addEventListener("click", compareWords);
+
 window.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     if (notification.classList.contains("show")) {
